@@ -1,0 +1,426 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "generate-password",
+  "title": "Generate Password",
+  "description": "Generate secure passwords, passphrases, and PINs",
+  "icon": "icon.png",
+  "author": "itspriddle",
+  "license": "MIT",
+  "categories": [
+    "Security",
+    "Developer Tools"
+  ],
+  "commands": [
+    {
+      "name": "generate-password",
+      "title": "Generate Password",
+      "subtitle": "Copy with defaults",
+      "description": "Generate a password with your default settings and copy it to the clipboard",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "length",
+          "type": "text",
+          "placeholder": "Length",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "generate-passphrase",
+      "title": "Generate Passphrase",
+      "subtitle": "Copy with defaults",
+      "description": "Generate a passphrase with your default settings and copy it to the clipboard",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "words",
+          "type": "text",
+          "placeholder": "Words",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "generate-pin",
+      "title": "Generate PIN",
+      "subtitle": "Copy with defaults",
+      "description": "Generate a PIN with your default settings and copy it to the clipboard",
+      "mode": "no-view",
+      "arguments": [
+        {
+          "name": "length",
+          "type": "text",
+          "placeholder": "Digits",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "password-generator",
+      "title": "Password Generator",
+      "subtitle": "Customize and preview",
+      "description": "Preview generated passwords, passphrases, and PINs and adjust options on the fly",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "defaultType",
+      "title": "Default Type",
+      "description": "What to generate when no type is chosen",
+      "type": "dropdown",
+      "required": false,
+      "default": "password",
+      "data": [
+        {
+          "title": "Password",
+          "value": "password"
+        },
+        {
+          "title": "Passphrase",
+          "value": "passphrase"
+        },
+        {
+          "title": "PIN",
+          "value": "pin"
+        }
+      ]
+    },
+    {
+      "name": "primaryAction",
+      "title": "Primary Action",
+      "description": "Copy honors the Clipboard settings below. Paste types into the frontmost app, but may be recorded by clipboard managers.",
+      "type": "dropdown",
+      "required": false,
+      "default": "copy",
+      "data": [
+        {
+          "title": "Copy to Clipboard",
+          "value": "copy"
+        },
+        {
+          "title": "Paste to Active App",
+          "value": "paste"
+        }
+      ]
+    },
+    {
+      "name": "clearClipboardAfter",
+      "title": "Clipboard",
+      "description": "Clear a copied value from the clipboard after this delay, unless something else was copied since",
+      "type": "dropdown",
+      "required": false,
+      "default": "90",
+      "data": [
+        {
+          "title": "Never clear",
+          "value": "0"
+        },
+        {
+          "title": "Clear after 30 seconds",
+          "value": "30"
+        },
+        {
+          "title": "Clear after 60 seconds",
+          "value": "60"
+        },
+        {
+          "title": "Clear after 90 seconds",
+          "value": "90"
+        },
+        {
+          "title": "Clear after 2 minutes",
+          "value": "120"
+        },
+        {
+          "title": "Clear after 5 minutes",
+          "value": "300"
+        }
+      ]
+    },
+    {
+      "name": "universalClipboard",
+      "label": "Use Universal Clipboard to copy to other devices",
+      "description": "Allow Handoff to sync copied values to your other Apple devices",
+      "type": "checkbox",
+      "required": false,
+      "default": false
+    },
+    {
+      "name": "concealClipboard",
+      "label": "Hide copied values from clipboard history",
+      "description": "Mark copies as concealed so Raycast and other clipboard managers don't record them. Turn off to find throwaway passwords in clipboard history later.",
+      "type": "checkbox",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "passwordLength",
+      "title": "Password Length",
+      "description": "Number of characters in generated passwords (minimum 8)",
+      "type": "textfield",
+      "required": false,
+      "default": "20"
+    },
+    {
+      "name": "includeNumbers",
+      "title": "Password Characters",
+      "label": "Numbers",
+      "description": "Include at least one number",
+      "type": "checkbox",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "includeSymbols",
+      "label": "Symbols",
+      "description": "Include at least one symbol",
+      "type": "checkbox",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "includeUppercase",
+      "label": "Uppercase letters",
+      "description": "Include at least one uppercase letter",
+      "type": "checkbox",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "includeLowercase",
+      "label": "Lowercase letters",
+      "description": "Include at least one lowercase letter",
+      "type": "checkbox",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "passphraseWords",
+      "title": "Passphrase Words",
+      "description": "Number of words in generated passphrases",
+      "type": "dropdown",
+      "required": false,
+      "default": "3",
+      "data": [
+        {
+          "title": "3",
+          "value": "3"
+        },
+        {
+          "title": "4",
+          "value": "4"
+        },
+        {
+          "title": "5",
+          "value": "5"
+        },
+        {
+          "title": "6",
+          "value": "6"
+        },
+        {
+          "title": "7",
+          "value": "7"
+        },
+        {
+          "title": "8",
+          "value": "8"
+        },
+        {
+          "title": "9",
+          "value": "9"
+        },
+        {
+          "title": "10",
+          "value": "10"
+        }
+      ]
+    },
+    {
+      "name": "passphraseDelimiter",
+      "title": "Passphrase Delimiter",
+      "description": "Single character placed between passphrase words (leave empty for none)",
+      "type": "textfield",
+      "required": false,
+      "default": "-"
+    },
+    {
+      "name": "minWordLength",
+      "title": "Minimum Word Length",
+      "description": "Shortest word allowed in passphrases",
+      "type": "dropdown",
+      "required": false,
+      "default": "5",
+      "data": [
+        {
+          "title": "3",
+          "value": "3"
+        },
+        {
+          "title": "4",
+          "value": "4"
+        },
+        {
+          "title": "5",
+          "value": "5"
+        },
+        {
+          "title": "6",
+          "value": "6"
+        },
+        {
+          "title": "7",
+          "value": "7"
+        },
+        {
+          "title": "8",
+          "value": "8"
+        },
+        {
+          "title": "9",
+          "value": "9"
+        },
+        {
+          "title": "10",
+          "value": "10"
+        }
+      ]
+    },
+    {
+      "name": "maxWordLength",
+      "title": "Maximum Word Length",
+      "description": "Longest word allowed in passphrases",
+      "type": "dropdown",
+      "required": false,
+      "default": "8",
+      "data": [
+        {
+          "title": "3",
+          "value": "3"
+        },
+        {
+          "title": "4",
+          "value": "4"
+        },
+        {
+          "title": "5",
+          "value": "5"
+        },
+        {
+          "title": "6",
+          "value": "6"
+        },
+        {
+          "title": "7",
+          "value": "7"
+        },
+        {
+          "title": "8",
+          "value": "8"
+        },
+        {
+          "title": "9",
+          "value": "9"
+        },
+        {
+          "title": "10",
+          "value": "10"
+        }
+      ]
+    },
+    {
+      "name": "uppercaseWords",
+      "title": "Uppercase Words",
+      "description": "Number of passphrase words written in UPPERCASE",
+      "type": "dropdown",
+      "required": false,
+      "default": "0",
+      "data": [
+        {
+          "title": "0",
+          "value": "0"
+        },
+        {
+          "title": "1",
+          "value": "1"
+        },
+        {
+          "title": "2",
+          "value": "2"
+        },
+        {
+          "title": "3",
+          "value": "3"
+        },
+        {
+          "title": "4",
+          "value": "4"
+        },
+        {
+          "title": "5",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "name": "customWordlist",
+      "title": "Custom Word List",
+      "description": "Optional file with one word per line. Defaults to the EFF large word list.",
+      "type": "file",
+      "required": false
+    },
+    {
+      "name": "pinLength",
+      "title": "PIN Length",
+      "description": "Number of digits in generated PINs",
+      "type": "dropdown",
+      "required": false,
+      "default": "4",
+      "data": [
+        {
+          "title": "4",
+          "value": "4"
+        },
+        {
+          "title": "6",
+          "value": "6"
+        },
+        {
+          "title": "8",
+          "value": "8"
+        },
+        {
+          "title": "10",
+          "value": "10"
+        },
+        {
+          "title": "12",
+          "value": "12"
+        }
+      ]
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^2.7.3",
+    "@raycast/utils": "^2.3.2"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.2.0",
+    "@types/node": "22.19.17",
+    "@types/react": "19.0.10",
+    "eslint": "^10.12.0",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3",
+    "vitest": "^5.0.3"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  }
+}
